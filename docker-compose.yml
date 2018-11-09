@@ -7,10 +7,7 @@ services:
     command: npm start
     working_dir: /usr/src/smart-brain-back-end
     environment:
-      POSTGRES_USER: Sally
-      POSTGRESS_PASSWORD: secret
-      POSTGRES_DB: smart-brain-docker
-      POSTGRES_HOST: postgres
+      POSTGRES_URI: postgres://sally:secret@postgres:5432/smart-brain-docker
     links:
       - postgres
     ports:
@@ -20,11 +17,11 @@ services:
 
   # Postgres
   postgres:
-    image: postgres
+    build: ./postgres
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_USER: Sally
+      POSTGRES_USER: sally
       POSTGRESS_PASSWORD: secret
       POSTGRES_DB: smart-brain-docker
       POSTGRES_HOST: postgres
